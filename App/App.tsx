@@ -1,19 +1,18 @@
+import {ApolloProvider} from '@apollo/client';
 import React from 'react';
-import { SafeAreaView, View, Text } from 'react-native';
+import client from './graphql/apolloClient';
+import MainNavigation from './src/navigation/MainNavigation';
+import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 
 const App = () => {
   return (
-    <SafeAreaView style={{ backgroundColor: 'white', flex: 1 }}>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Text>Hello Zeller</Text>
-      </View>
-    </SafeAreaView>
+    <ApolloProvider client={client}>
+      <SafeAreaProvider>
+        <SafeAreaView style={{backgroundColor: 'white', flex: 1}}>
+          <MainNavigation />
+        </SafeAreaView>
+      </SafeAreaProvider>
+    </ApolloProvider>
   );
 };
 
