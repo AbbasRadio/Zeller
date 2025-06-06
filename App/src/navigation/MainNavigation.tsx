@@ -2,9 +2,11 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Users from '../components/Users';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import SearchUser from '../components/SearchUser';
+import Users from '../screens/Users';
+// import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialIcons'
+import SearchUser from '../screens/SearchUser';
+import { Text } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -12,30 +14,22 @@ const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
   return (
     <Tab.Navigator
-      screenOptions={({route}) => ({
-        tabBarIcon: ({focused, color, size}) => {
-          let iconName: string = 'help-circle';
-
-          if (route.name === 'AllUsers') {
-            iconName = focused ? 'people' : 'people-outline';
-          } else if (route.name === 'SearchUsers') {
-            iconName = focused ? 'search' : 'search-outline';
-          }
-
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
-        tabBarActiveTintColor: 'blue',
+      screenOptions={() => ({
+        tabBarIcon: ({ focused, color, size }) => {
+            return <Text style={{color: focused ? '#007bff' : 'gray', fontSize: size / 1.5}}>👤</Text>;
+          },
+        tabBarActiveTintColor: '#007bff',
         tabBarInactiveTintColor: 'gray',
       })}>
       <Tab.Screen
-        name="AllUsers"
+        name="AllCustomers"
         component={Users}
         options={{title: 'All Users'}}
       />
       <Tab.Screen
-        name="SearchUsers"
+        name="SearchCustomer"
         component={SearchUser}
-        options={{title: 'Search Users'}}
+        options={{title: 'Search User'}}
       />
     </Tab.Navigator>
   );
