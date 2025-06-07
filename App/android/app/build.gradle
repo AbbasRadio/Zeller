@@ -76,7 +76,9 @@ android {
     ndkVersion rootProject.ext.ndkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
-
+    aaptOptions {
+        noCompress 'ttf'
+    }
     namespace "com.zeller"
     defaultConfig {
         applicationId "com.zeller"
